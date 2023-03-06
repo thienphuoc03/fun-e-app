@@ -3,7 +3,7 @@ import {Dimensions} from 'react-native';
 export default {
   colors: {
     primary: '#F83E69',
-    secondary: '#0079BF',
+    secondary: '#0079B5',
     white: '#ffffff',
     black: '#000000',
     gray: '#bbbbbb',

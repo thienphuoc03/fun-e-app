@@ -19,23 +19,29 @@ import RoomScreen from './app/screens/room/RoomScreen';
 import AccountScreen from './app/screens/account/AccountScreen';
 import QRScanScreen from './app/screens/qrscan/QRScanScreen';
 import SearchResultScreen from './app/screens/searchResult/SearchResultScreen';
+import SignInScreen from './app/screens/auth/SignInScreen';
+import SignUpScreen from './app/screens/auth/SignUpScreen';
 
 const SearchStack = createNativeStackNavigator();
 
 function SearchStackScreens() {
   return (
     <SearchStack.Navigator>
-      <SearchStack.Screen
-        name="Search"
-        component={SearchScreen}
-        options={{headerShown: false}}
-      />
-      <SearchStack.Screen
-        name="SearchResult"
-        component={SearchResultScreen}
-        options={{headerShown: false}}
-      />
+      <SearchStack.Screen name="SearchScreen" component={SearchScreen} />
+      <SearchStack.Screen name="SearchResult" component={SearchResultScreen} />
     </SearchStack.Navigator>
+  );
+}
+
+const AccountStack = createNativeStackNavigator();
+
+function AccountStackScreens() {
+  return (
+    <AccountStack.Navigator>
+      <AccountStack.Screen name="AccountScreen" component={AccountScreen} />
+      <AccountStack.Screen name="SignIn" component={SignInScreen} />
+      <AccountStack.Screen name="SignUp" component={SignUpScreen} />
+    </AccountStack.Navigator>
   );
 }
 
@@ -71,6 +77,7 @@ function MyTabs() {
           tabBarIcon: ({color}) => (
             <Icon name="search" color={color} size={26} />
           ),
+          headerShown: false,
         }}
       />
       <Tab.Screen
@@ -85,10 +92,11 @@ function MyTabs() {
       />
       <Tab.Screen
         name="Account"
-        component={AccountScreen}
+        component={AccountStackScreens}
         options={{
           tabBarLabel: 'Account',
           tabBarIcon: ({color}) => <Icon name="user" color={color} size={26} />,
+          headerShown: false,
         }}
       />
       <Tab.Screen
