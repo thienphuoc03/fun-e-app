@@ -12,7 +12,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Checkbox from '../../components/button/Checkbox';
 import {useNavigation} from '@react-navigation/native';
 
-const SignInScreen = ({route, naviga}) => {
+const SignInScreen = ({route, navigate}) => {
   const navigation = useNavigation();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -74,8 +74,7 @@ const SignInScreen = ({route, naviga}) => {
           </TouchableOpacity>
 
           <View style={styles.signUpView}>
-            <Text style={styles.text1}>Or</Text>
-            <Text style={styles.text2}>Register an account</Text>
+            <Text style={styles.text1}>Don't have an account?</Text>
             <TouchableOpacity
               style={styles.signUpBtn}
               onPress={showSignUpScreen}>
@@ -148,18 +147,16 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   signUpView: {
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 10,
   },
   text1: {},
-  text2: {},
   signUpBtn: {
-    padding: 10,
-    backgroundColor: Constant.colors.gray,
-    marginTop: 10,
+    marginLeft: 5,
   },
   signUpText: {
-    color: Constant.colors.white,
+    color: Constant.colors.secondary,
   },
 });
