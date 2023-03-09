@@ -18,17 +18,30 @@ import SearchScreen from './app/screens/search/SearchScreen';
 import RoomScreen from './app/screens/room/RoomScreen';
 import AccountScreen from './app/screens/account/AccountScreen';
 import QRScanScreen from './app/screens/qrscan/QRScanScreen';
-import SearchResultScreen from './app/screens/searchResult/SearchResultScreen';
+import SearchResultScreen from './app/screens/search/searchResult/SearchResultScreen';
 import SignInScreen from './app/screens/auth/SignInScreen';
 import SignUpScreen from './app/screens/auth/SignUpScreen';
+import {View} from 'react-native';
 
 const SearchStack = createNativeStackNavigator();
 
 function SearchStackScreens() {
   return (
     <SearchStack.Navigator>
-      <SearchStack.Screen name="SearchScreen" component={SearchScreen} />
-      <SearchStack.Screen name="SearchResult" component={SearchResultScreen} />
+      <SearchStack.Screen
+        name="Search"
+        component={SearchScreen}
+        option={{
+          title: 'Search',
+        }}
+      />
+      <SearchStack.Screen
+        name="SearchResult"
+        component={SearchResultScreen}
+        option={{
+          title: 'Search',
+        }}
+      />
     </SearchStack.Navigator>
   );
 }
@@ -38,9 +51,27 @@ const AccountStack = createNativeStackNavigator();
 function AccountStackScreens() {
   return (
     <AccountStack.Navigator>
-      <AccountStack.Screen name="AccountScreen" component={AccountScreen} />
-      <AccountStack.Screen name="SignIn" component={SignInScreen} />
-      <AccountStack.Screen name="SignUp" component={SignUpScreen} />
+      <AccountStack.Screen
+        name="Account"
+        component={AccountScreen}
+        option={{
+          title: 'Account',
+        }}
+      />
+      <AccountStack.Screen
+        name="SignIn"
+        component={SignInScreen}
+        option={{
+          title: 'Sign In',
+        }}
+      />
+      <AccountStack.Screen
+        name="SignUp"
+        component={SignUpScreen}
+        option={{
+          title: 'Sign Up',
+        }}
+      />
     </AccountStack.Navigator>
   );
 }
@@ -50,7 +81,9 @@ const Tab = createBottomTabNavigator();
 function MyTabs() {
   return (
     <Tab.Navigator
+      initialRouteName="TabHome"
       screenOptions={({route}) => ({
+        tabBarActiveTintColor: Constant.colors.primary,
         headerTitle: getHeaderTitle(route),
         headerStyle: {
           backgroundColor: Constant.colors.white,
@@ -62,17 +95,19 @@ function MyTabs() {
         },
       })}>
       <Tab.Screen
-        name="Home"
+        name="TabHome"
         component={HomeScreen}
         options={{
+          title: 'Home',
           tabBarLabel: 'Home',
           tabBarIcon: ({color}) => <Icon name="home" color={color} size={26} />,
         }}
       />
       <Tab.Screen
-        name="Search"
+        name="TabSearch"
         component={SearchStackScreens}
         options={{
+          title: 'Search',
           tabBarLabel: 'Search',
           tabBarIcon: ({color}) => (
             <Icon name="search" color={color} size={26} />
@@ -81,9 +116,10 @@ function MyTabs() {
         }}
       />
       <Tab.Screen
-        name="Room"
+        name="TabRoom"
         component={RoomScreen}
         options={{
+          title: 'Room',
           tabBarLabel: 'Room',
           tabBarIcon: ({color}) => (
             <Icon name="group" color={color} size={26} />
@@ -91,19 +127,21 @@ function MyTabs() {
         }}
       />
       <Tab.Screen
-        name="Account"
+        name="TabAccount"
         component={AccountStackScreens}
         options={{
+          title: 'account',
           tabBarLabel: 'Account',
           tabBarIcon: ({color}) => <Icon name="user" color={color} size={26} />,
           headerShown: false,
         }}
       />
       <Tab.Screen
-        name="QRScan"
+        name="TabQRScan"
         component={QRScanScreen}
         options={{
-          tabBarLabel: 'QRScan',
+          title: 'QR Scan',
+          tabBarLabel: 'QR Scan',
           tabBarIcon: ({color}) => (
             <Icon name="qrcode" color={color} size={26} />
           ),
@@ -117,16 +155,16 @@ function getHeaderTitle(route) {
   const routeName = route.state?.routes[route.state.index]?.name ?? 'home';
 
   switch (routeName) {
-    case 'Home':
-      return 'Home';
-    case 'Search':
-      return 'Search';
-    case 'Room':
-      return 'Room';
-    case 'Account':
-      return 'Account';
-    case 'QRScan':
-      return 'QRScan';
+    case 'TabHome':
+      return 'TabHome';
+    case 'TabSearch':
+      return 'TabSearch';
+    case 'TabRoom':
+      return 'TabRoom';
+    case 'TabAccount':
+      return 'TabAccount';
+    case 'TabQRScan':
+      return 'TabQRScan';
   }
 }
 

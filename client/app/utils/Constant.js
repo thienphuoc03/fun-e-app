@@ -7,6 +7,7 @@ export default {
     white: '#ffffff',
     black: '#000000',
     gray: '#bbbbbb',
+    lightGray: '#D3D3D3',
     textColor: '#444444',
     textPrimary: '#D85680',
     error: '#f44336',
