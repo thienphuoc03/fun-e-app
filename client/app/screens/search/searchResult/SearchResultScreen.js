@@ -7,9 +7,9 @@ import {
   FlatList,
 } from 'react-native';
 import React from 'react';
-import Constant from '../../utils/Constant';
+import Constant from '../../../utils/Constant';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import ProductCard from '../../components/card/ProductCard';
+import ProductCard from '../../../components/card/ProductCard';
 
 const searchResults = [
   {
@@ -144,5 +144,6 @@ const styles = StyleSheet.create({
   },
   flatList: {
     marginVertical: 10,
+    marginLeft: 25,
   },
 });

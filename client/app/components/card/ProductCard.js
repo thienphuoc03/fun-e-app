@@ -24,7 +24,8 @@ export default ProductCard;
 const styles = StyleSheet.create({
   rootView: {
     width: 120,
-    marginHorizontal: 7,
+    marginHorizontal: 10,
+    marginVertical: 10,
   },
   productThumbnail: {
     borderRadius: 5,
