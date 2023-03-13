@@ -12,8 +12,11 @@ import {
 import React, {useState} from 'react';
 import Constant from '../../../utils/Constant';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import {useNavigation} from '@react-navigation/native';
 
 const EditProfileScreen = ({route, navigate}) => {
+  const navigation = useNavigation();
+
   const [description, setDescription] = useState('');
   const [email, setEmail] = useState('');
   const [dob, setDob] = useState('');
@@ -35,6 +38,7 @@ const EditProfileScreen = ({route, navigate}) => {
       setButtonColor('#F83E69');
       setUpdateTitle('Update');
       setIsLoading(false);
+      navigation.navigate('Profile');
     }, 2000);
   };
 
