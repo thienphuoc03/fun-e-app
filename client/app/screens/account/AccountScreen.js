@@ -3,6 +3,7 @@ import React from 'react';
 import {TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import Constant from '../../utils/Constant';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import NavigateCard from '../../components/card/NavigateCard';
 
 function AccountScreen() {
@@ -22,74 +23,27 @@ function AccountScreen() {
         <View style={styles.parentView}>
           <Text style={styles.parentTitle}>Account Settings</Text>
           <View style={styles.childrenView}>
-            <NavigateCard
-              icon="user-alt"
-              cardName="Profile"
-              screenName="SignIn"
-            />
-            <NavigateCard
-              icon="qrcode"
-              cardName="My QR Code"
-              screenName="SignIn"
-            />
-            <NavigateCard
-              icon="project-diagram"
-              cardName="Analytics"
-              screenName="SignIn"
-            />
-            <NavigateCard
-              icon="credit-card"
-              cardName="Payment"
-              screenName="SignIn"
-            />
-            <NavigateCard
-              icon="wallet"
-              cardName="My Wallet"
-              screenName="SignIn"
-            />
-            <NavigateCard
-              icon="wallet"
-              cardName="My Community Wallet"
-              screenName="SignIn"
-            />
-            <NavigateCard
-              icon="store-alt"
-              cardName="Store Info"
-              screenName="SignIn"
-            />
+            <NavigateCard icon="user-alt" name="Profile" screenName="Profile" />
+            <NavigateCard icon="qrcode" name="My QR Code" />
+            <NavigateCard icon="project-diagram" name="Analytics" />
+            <NavigateCard icon="credit-card" name="Payment" />
+            <NavigateCard icon="wallet" name="My Wallet" />
+            <NavigateCard icon="wallet" name="My Community Wallet" />
+            <NavigateCard icon="store-alt" name="Store Info" />
           </View>
         </View>
 
         <View style={styles.parentView}>
           <Text style={styles.parentTitle}>Security Settings</Text>
           <View style={styles.childrenView}>
-            <NavigateCard
-              icon="ellipsis-h"
-              cardName="Password reset"
-              screenName="SignIn"
-            />
-            <NavigateCard
-              icon="lock"
-              cardName="Face ID and PIN"
-              screenName="SignIn"
-            />
+            <NavigateCard icon="ellipsis-h" name="Password reset" />
+            <NavigateCard icon="lock" name="Face ID and PIN" />
           </View>
         </View>
 
         <View style={styles.parentView}>
           <Text style={styles.parentTitle}>App Settings</Text>
-          <View style={styles.childrenView}>
-            <NavigateCard
-              icon="ellipsis-h"
-              cardName="Password reset"
-              screenName="SignIn"
-            />
-            <NavigateCard
-              icon="lock"
-              cardName="Face ID and PIN"
-              screenName="SignIn"
-            />
-          </View>
+          <View style={styles.childrenView}></View>
         </View>
       </ScrollView>
     </View>

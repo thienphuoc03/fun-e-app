@@ -4,33 +4,28 @@ import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Constant from '../../utils/Constant';
 
-const NavigateCard = ({icon, cardName, screenName}) => {
+const NavigateCard = ({icon, name, screenName}) => {
   const navigation = useNavigation();
 
-  const switchScreen = screenName => {
-    navigation.navigate(screenName);
-  };
-
   return (
-    <View style={styles.rootView}>
+    <TouchableOpacity
+      style={styles.cardView}
+      onPress={() => navigation.navigate(screenName)}>
       <View style={styles.leftView}>
         <Icon name={icon} size={20} />
-        <Text style={styles.title}>{cardName}</Text>
+        <Text style={styles.title}>{name}</Text>
       </View>
-      <TouchableOpacity
-        style={styles.arrowBtn}
-        // onPress={switchScreen(screenName)}
-      >
+      <View style={styles.arrowBtn}>
         <Icon name="chevron-right" size={15} color="gray" />
-      </TouchableOpacity>
-    </View>
+      </View>
+    </TouchableOpacity>
   );
 };
 
 export default NavigateCard;
 
 const styles = StyleSheet.create({
-  rootView: {
+  cardView: {
     backgroundColor: 'white',
     borderColor: Constant.colors.gray,
     flexDirection: 'row',

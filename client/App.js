@@ -21,7 +21,8 @@ import QRScanScreen from './app/screens/qrscan/QRScanScreen';
 import SearchResultScreen from './app/screens/search/searchResult/SearchResultScreen';
 import SignInScreen from './app/screens/auth/SignInScreen';
 import SignUpScreen from './app/screens/auth/SignUpScreen';
-import {View} from 'react-native';
+import ProfileScreen from './app/screens/account/profile/ProfileScreen';
+import EditProfileScreen from './app/screens/account/profile/EditProfileScreen';
 
 const SearchStack = createNativeStackNavigator();
 
@@ -56,6 +57,20 @@ function AccountStackScreens() {
         component={AccountScreen}
         option={{
           title: 'Account',
+        }}
+      />
+      <AccountStack.Screen
+        name="Profile"
+        component={ProfileScreen}
+        option={{
+          title: 'Profile',
+        }}
+      />
+      <AccountStack.Screen
+        name="EditProfile"
+        component={EditProfileScreen}
+        option={{
+          title: 'Edit Profile',
         }}
       />
       <AccountStack.Screen
