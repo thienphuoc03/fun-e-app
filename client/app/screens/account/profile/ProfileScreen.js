@@ -2,7 +2,6 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import Constant from '../../../utils/Constant';
 import NavigateCard from '../../../components/card/NavigateCard';
-import {useNavigation} from '@react-navigation/native';
 
 const ProfileScreen = ({route, navigate}) => {
   return (

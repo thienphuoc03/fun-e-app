@@ -5,6 +5,7 @@ import {
   TextInput,
   TouchableOpacity,
   FlatList,
+  ScrollView,
 } from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -130,57 +131,59 @@ const SearchScreen = () => {
         </TouchableOpacity>
       </View>
 
-      {/* begin Recently Viewed */}
-      <View style={styles.listView}>
-        <View style={styles.listHeader}>
-          <Text style={styles.listHeaderLeft}>Recently Viewed</Text>
-          <TouchableOpacity style={styles.cleanBtn}>
-            <Text style={styles.listHeaderRight}>Clear</Text>
-          </TouchableOpacity>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {/* begin Recently Viewed */}
+        <View style={styles.listView}>
+          <View style={styles.listHeader}>
+            <Text style={styles.listHeaderLeft}>Recently Viewed</Text>
+            <TouchableOpacity style={styles.cleanBtn}>
+              <Text style={styles.listHeaderRight}>Clear</Text>
+            </TouchableOpacity>
+          </View>
+
+          <FlatList
+            style={styles.flatList}
+            data={recentlyViewed}
+            renderItem={({item, index}) => <ProductCard product={item} />}
+            keyExtractor={item => item.id}
+            horizontal={true}
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
+          />
         </View>
+        {/* end Recently Viewed */}
 
-        <FlatList
-          style={styles.flatList}
-          data={recentlyViewed}
-          renderItem={({item, index}) => <ProductCard product={item} />}
-          keyExtractor={item => item.id}
-          horizontal={true}
-          showsVerticalScrollIndicator={false}
-          showsHorizontalScrollIndicator={false}
-        />
-      </View>
-      {/* end Recently Viewed */}
+        {/* begin Recommended */}
+        <View style={styles.listView}>
+          <View style={styles.listHeader}>
+            <Text style={styles.listHeaderLeft}>Recommended</Text>
+            <TouchableOpacity style={styles.cleanBtn}>
+              <Text style={styles.listHeaderRight}>Refresh</Text>
+            </TouchableOpacity>
+          </View>
 
-      {/* begin Recommended */}
-      <View style={styles.listView}>
-        <View style={styles.listHeader}>
-          <Text style={styles.listHeaderLeft}>Recommended</Text>
-          <TouchableOpacity style={styles.cleanBtn}>
-            <Text style={styles.listHeaderRight}>Refresh</Text>
-          </TouchableOpacity>
+          <View style={styles.recommendedView}>{/* content */}</View>
         </View>
+        {/* end Recommended */}
 
-        <View style={styles.recommendedView}>{/* content */}</View>
-      </View>
-      {/* end Recommended */}
+        {/* begin You May Also Like */}
+        <View style={styles.listView}>
+          <View style={styles.listHeader}>
+            <Text style={styles.listHeaderLeft}>You May Also Like</Text>
+          </View>
 
-      {/* begin You May Also Like */}
-      <View style={styles.listView}>
-        <View style={styles.listHeader}>
-          <Text style={styles.listHeaderLeft}>You May Also Like</Text>
+          <FlatList
+            style={styles.flatList}
+            data={recentlyViewed}
+            renderItem={({item, index}) => <ProductCard product={item} />}
+            keyExtractor={item => item.id}
+            horizontal={true}
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
+          />
         </View>
-
-        <FlatList
-          style={styles.flatList}
-          data={recentlyViewed}
-          renderItem={({item, index}) => <ProductCard product={item} />}
-          keyExtractor={item => item.id}
-          horizontal={true}
-          showsVerticalScrollIndicator={false}
-          showsHorizontalScrollIndicator={false}
-        />
-      </View>
-      {/* end You May Also Like */}
+        {/* end You May Also Like */}
+      </ScrollView>
     </View>
   );
 };
