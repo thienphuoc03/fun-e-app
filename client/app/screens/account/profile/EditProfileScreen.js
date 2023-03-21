@@ -13,9 +13,11 @@ import React, {useState} from 'react';
 import Constant from '../../../utils/Constant';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {useNavigation} from '@react-navigation/native';
+import ImagePicker from 'react-native-image-picker';
 
 const EditProfileScreen = ({route, navigate}) => {
   const navigation = useNavigation();
+  const [imagePath, setImagePath] = useState(null);
 
   const [description, setDescription] = useState('');
   const [email, setEmail] = useState('');
@@ -42,6 +44,14 @@ const EditProfileScreen = ({route, navigate}) => {
     }, 2000);
   };
 
+  const selectImage = () => {
+    ImagePicker.launchImageLibrary({}, response => {
+      if (response.uri) {
+        setImagePath(response.uri);
+      }
+    });
+  };
+
   return (
     <View style={styles.rootView}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -62,7 +72,7 @@ const EditProfileScreen = ({route, navigate}) => {
           </View>
         </View>
 
-        {/* begin upload caver media */}
+        {/* begin upload cover media */}
         <View style={styles.updateCoverMediaView}>
           <Text style={styles.updateCoverMediaTitle}>Update Cover media</Text>
           <View style={styles.updateCoverMediaBody}>
@@ -76,7 +86,7 @@ const EditProfileScreen = ({route, navigate}) => {
               Let's upload photos and videos
             </Text>
             <View style={styles.uploadBtnsView}>
-              <TouchableOpacity style={styles.uploadBtn}>
+              <TouchableOpacity style={styles.uploadBtn} onPress={selectImage}>
                 <Icon
                   name="cloud-upload-alt"
                   size={13}
