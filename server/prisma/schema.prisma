@@ -1,0 +1,102 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model address {
+  id        Int      @id @default(autoincrement())
+  address   String?
+  userId    Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  status    Int      @default(0)
+  user      user     @relation(fields: [userId], references: [id], map: "Address_userId_fkey")
+
+  @@index([userId], map: "Address_userId_fkey")
+}
+
+model categoriesonproducts {
+  productId  Int
+  categoryId Int
+  assignedAt DateTime @default(now())
+  assignedBy String
+  category   category @relation(fields: [categoryId], references: [id], map: "CategoriesOnProducts_categoryId_fkey")
+  product    product  @relation(fields: [productId], references: [id], map: "CategoriesOnProducts_productId_fkey")
+
+  @@id([productId, categoryId])
+  @@index([categoryId], map: "CategoriesOnProducts_categoryId_fkey")
+}
+
+model category {
+  id                   Int                    @id @default(autoincrement())
+  name                 String
+  createdAt            DateTime               @default(now())
+  updatedAt            DateTime               @updatedAt
+  categoriesonproducts categoriesonproducts[]
+}
+
+model group {
+  id          Int           @id @default(autoincrement())
+  name        String
+  avatarUri   String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  grouponuser grouponuser[]
+}
+
+model grouponuser {
+  userId     Int
+  groupId    Int
+  assignedAt DateTime @default(now())
+  assignedBy String
+  group      group    @relation(fields: [groupId], references: [id], map: "GroupOnUser_groupId_fkey")
+  user       user     @relation(fields: [userId], references: [id], map: "GroupOnUser_userId_fkey")
+
+  @@id([userId, groupId])
+  @@index([groupId], map: "GroupOnUser_groupId_fkey")
+}
+
+model product {
+  id                   Int                    @id @default(autoincrement())
+  name                 String
+  price                Int
+  quantity             Int
+  description          String
+  imageUri             String
+  createdAt            DateTime               @default(now())
+  updatedAt            DateTime               @updatedAt
+  userId               Int?
+  categoriesonproducts categoriesonproducts[]
+  user                 user?                  @relation(fields: [userId], references: [id], map: "Product_userId_fkey")
+
+  @@index([userId], map: "Product_userId_fkey")
+}
+
+model user {
+  id          Int           @id @default(autoincrement())
+  name        String?
+  dateOfBirth DateTime?
+  email       String?       @unique(map: "User_email_key")
+  phoneNumber String        @unique(map: "User_phoneNumber_key")
+  gender      String?
+  avatarUri   String?
+  role        user_role     @default(USER)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  status      Int           @default(0)
+  password    String
+  salt        String
+  address     address[]
+  grouponuser grouponuser[]
+  product     product[]
+}
+
+enum user_role {
+  ADMIN
+  USER
+  SELLER
+}
